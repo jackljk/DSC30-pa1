@@ -95,8 +95,19 @@ public class ProgrammingChallenges {
 
     public static double[] findShortestDistance(double[] x, double[] y){
         /*TODO*/
-
-        return null;
+        double[] distances = new double[x.length];
+        for (int i = 0;i<x.length;i++){
+            double dist = 0;
+            for (int j = 0;j<x.length;j++){
+                double temp_dist;
+                temp_dist = Math.sqrt(Math.pow(x[i] - x[j], 2) + Math.pow(y[i] - y[j], 2));
+                if ((dist > temp_dist) && (i != j)){
+                    dist = temp_dist;
+                } else if (dist == 0) dist = temp_dist;
+            }
+            distances[i] = dist;
+        }
+        return distances;
     }
 
     ///////// Practice 4.1 /////////
