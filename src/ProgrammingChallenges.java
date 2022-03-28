@@ -116,11 +116,13 @@ public class ProgrammingChallenges {
 
     public static String[] getUnique(String[] arr) {
         /*Creates an array of nulls in the length of the input, then changes the values in order
-        of each unique value encountered*/
+        of each unique value encountered.*/
         int arr_size = arr.length;
         int pos = 0;
         String[] final_arr = new String[arr_size];
-        for (int i = 0;i<arr_size; i++) final_arr[i] = null;
+        for (int i = 0;i<arr_size; i++) {
+            final_arr[i] = null;
+        }
         for (String s : arr) {
             if (!Arrays.asList(final_arr).contains(s)) {
                 final_arr[pos] = s;
