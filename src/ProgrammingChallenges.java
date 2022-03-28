@@ -94,7 +94,9 @@ public class ProgrammingChallenges {
     ///////// Practice 3 /////////
 
     public static double[] findShortestDistance(double[] x, double[] y){
-        /*TODO*/
+        /*Iterates through each coordinates and then again while calculating the distance between
+         the 2 points and replacing it if the next distance is shorter and returns the shortest
+         distances.*/
         double[] distances = new double[x.length];
         for (int i = 0;i<x.length;i++){
             double dist = 0;
