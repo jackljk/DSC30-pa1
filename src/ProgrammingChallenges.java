@@ -7,6 +7,7 @@
 import sun.security.util.ArrayUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -20,7 +21,9 @@ public class ProgrammingChallenges {
     ///////// Practice 1 /////////
 
     public static int[] reverseEvenNumber(int[] arr) {
-        /*TODO*/
+        /*Counts number of even numbers in the array. Then adds all even numbers in to a new
+        array. Which then gets reversed and all even numbers in the main array gets replaced with
+         it's reversed counterpart.*/
         int size = arr.length;
         int no_evens = 0;
         for (int j : arr) {
@@ -29,9 +32,11 @@ public class ProgrammingChallenges {
             }
         }
         int[] evens_arr = new int[no_evens];
+        int pos1 = 0;
         for (int i = 0;i < size; i++){
             if(arr[i] % 2 == 0) {
-                evens_arr[i] = arr[i];
+                evens_arr[pos1] = arr[i];
+                pos1 += 1;
             }
         }
         for(int i = 0; i < evens_arr.length / 2; i++)
@@ -40,27 +45,57 @@ public class ProgrammingChallenges {
             evens_arr[i] = evens_arr[evens_arr.length - i - 1];
             evens_arr[evens_arr.length - i - 1] = temp;
         }
-        int pos = 0;
+        int pos2 = 0;
         for (int i = 0;i < size; i++) {
             if (arr[i] % 2 == 0) {
-                arr[i] = evens_arr[pos];
-                pos += 1;
+                arr[i] = evens_arr[pos2];
+                pos2 += 1;
             }
         }
         return arr;
     }
-
     ///////// Practice 2 /////////
 
     public static String checkPasswordStrength(String input) {
-        /*TODO*/
-        return null;
+        /*Loops through th string to check if the string passes the criteria required for a good
+         password and returns how good depending on how many checks were passed*/
+        int checks = 0;
+        char[] chars = input.toCharArray();
+        for (int i = 0;i < input.length(); i++) {
+            if (Character.isUpperCase(input.charAt(i)) && Character.isLowerCase(input.charAt(i))) {
+                checks += 1;
+                break;
+            }
+        }
+        for (int i = 0;i < input.length(); i++){
+            if (Character.isDigit(input.charAt(i))){
+                checks += 1;
+                break;
+            }
+        }
+        for (int i = 0;i < input.length(); i++){
+            if (!Character.isDigit(input.charAt(i)) && !Character.isAlphabetic(input.charAt(i))){
+                checks += 1;
+                break;
+            }
+        }
+        if (input.length() >= 8){
+            checks += 1;
+        }
+        if (checks == 0){
+            return "Not Acceptable";
+        } else if (checks <= 2) {
+            return "Weak";
+        } else {
+            return "Strong";
+        }
     }
 
     ///////// Practice 3 /////////
 
     public static double[] findShortestDistance(double[] x, double[] y){
         /*TODO*/
+
         return null;
     }
 
@@ -109,3 +144,4 @@ public class ProgrammingChallenges {
     }
 
 }
+
