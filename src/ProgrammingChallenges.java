@@ -194,7 +194,7 @@ public class ProgrammingChallenges {
 
     ///////// Practice 5.2 /////////
 
-    public static String getIntersection(int[] poly1, int[] poly2){
+    public static Double getIntersection(int[] poly1, int[] poly2){
         /*Calculates the value of t if the derivative of both poly1 and poly2 are quadratic as it
          gives a linear equation. But if there is division by 0, a positive or negative infinity
          is returned instead. Or if the value is invalid, eg the value is negative, a -1 is
@@ -239,15 +239,7 @@ public class ProgrammingChallenges {
         } else {
             ans = 0;
         }
-        if (ans == Double.NEGATIVE_INFINITY){
-            return "-Infinity";
-        } else if (ans == Double.POSITIVE_INFINITY){
-            return "Infinity";
-        } else if (ans < 0){
-            return "-1";
-        } else {
-            return Double.toString(ans);
-        }
+        return ans;
     }
 
 }
