@@ -7,9 +7,9 @@
 import java.util.*;
 
 /**
- * TODO
+ * PA1
  * @author Jack Kai Lim
- * @since TODO
+ * @since 3/28/2022
  */
 public class ProgrammingChallenges {
 
@@ -19,6 +19,7 @@ public class ProgrammingChallenges {
         /*Counts number of even numbers in the array. Then adds all even numbers in to a new
         array. Which then gets reversed and all even numbers in the main array gets replaced with
          it's reversed counterpart.*/
+        int half = 2;
         int size = arr.length;
         int no_evens = 0;
         for (int j : arr) {
@@ -34,7 +35,7 @@ public class ProgrammingChallenges {
                 pos1 += 1;
             }
         }
-        for(int i = 0; i < evens_arr.length / 2; i++)
+        for(int i = 0; i < evens_arr.length / half; i++)
         {
             int temp = evens_arr[i];
             evens_arr[i] = evens_arr[evens_arr.length - i - 1];
@@ -55,6 +56,8 @@ public class ProgrammingChallenges {
         /*Loops through th string to check if the string passes the criteria required for a good
          password and returns how good depending on how many checks were passed*/
         int checks = 0;
+        int min_len = 8;
+        int weak = 2;
         char[] chars = input.toCharArray();
         for (int i = 0;i < input.length(); i++) {
             if (Character.isUpperCase(input.charAt(i)) && Character.isLowerCase(input.charAt(i))) {
@@ -74,12 +77,12 @@ public class ProgrammingChallenges {
                 break;
             }
         }
-        if (input.length() >= 8){
+        if (input.length() >= min_len){
             checks += 1;
         }
         if (checks == 0){
             return "Not Acceptable";
-        } else if (checks <= 2) {
+        } else if (checks <= weak) {
             return "Weak";
         } else {
             return "Strong";
@@ -92,12 +95,13 @@ public class ProgrammingChallenges {
         /*Iterates through each coordinates and then again while calculating the distance between
          the 2 points and replacing it if the next distance is shorter and returns the shortest
          distances.*/
+        int square = 2;
         double[] distances = new double[x.length];
         for (int i = 0;i<x.length;i++){
             double dist = 0;
             for (int j = 0;j<x.length;j++){
-                double temp_dist;
-                temp_dist = Math.sqrt(Math.pow(x[i] - x[j], 2) + Math.pow(y[i] - y[j], 2));
+                double temp_dist = Math.sqrt(Math.pow(x[i] - x[j], square)
+                        + Math.pow(y[i] - y[j], square));
                 if ((dist > temp_dist) && (i != j)){
                     dist = temp_dist;
                 } else if (dist == 0) dist = temp_dist;
@@ -170,7 +174,9 @@ public class ProgrammingChallenges {
     ///////// Practice 5.1 /////////
 
     public static int[] calculateDerivative(int[] polyArr){
-        /*TODO*/
+        /*This takes in an array and multiplies that value of the integer at each index by it's
+        index. Then moves all items in an array one to the left and reduces the array size to
+        correspond to the decrease in power.*/
         int[] temp_array = new int[polyArr.length];
         for (int i=0;i<polyArr.length;i++){
             temp_array[i] = polyArr[i]*i;
@@ -189,28 +195,56 @@ public class ProgrammingChallenges {
     ///////// Practice 5.2 /////////
 
     public static String getIntersection(int[] poly1, int[] poly2){
-        /*TODO*/
+        /*Calculates the value of t if the derivative of both poly1 and poly2 are quadratic as it
+         gives a linear equation. But if there is division by 0, a positive or negative infinity
+         is returned instead. Or if the value is invalid, eg the value is negative, a -1 is
+         returned. Else it calculates the value of t and returns the value of it.*/
         int linear_len = 2;
         int[] deri1 = calculateDerivative(poly1);
         int[] deri2 = calculateDerivative(poly2);
         int deri1_pow = deri1.length;
         int deri2_pow = deri2.length;
         double ans;
+
         if (deri1_pow == linear_len && deri2_pow == linear_len){
-            ans = (deri2[1] - deri1[1])/(deri1[0] - deri2[0]);
+            if (deri1[1] - deri2[1] == 0){
+                if (deri2[0] - deri1[0] < 0){
+                    ans = Double.NEGATIVE_INFINITY;
+                } else {
+                    ans = Double.POSITIVE_INFINITY;
+                }
+            } else {
+                ans = (deri2[0] - deri1[0])/(deri1[1] - deri2[1]);
+            }
         } else if (deri1_pow == 1 && deri2_pow == linear_len){
-            ans = (deri1[0] - deri2[0])/deri2[1];
-        } else if (deri1_pow == 2 && deri2_pow == 1){
-            ans = (deri2[0] - deri1[0])/deri1[1];
+            if (deri2[1] == 0){
+                if (deri1[0] - deri2[0] < 0){
+                    ans = Double.NEGATIVE_INFINITY;
+                } else {
+                    ans =  Double.POSITIVE_INFINITY;
+                }
+            } else {
+                ans = (deri1[0] - deri2[0])/deri2[1];
+            }
+        } else if (deri1_pow == linear_len && deri2_pow == 1){
+            if (deri1[1] == 0){
+                if (deri2[0] - deri1[0] < 0){
+                    ans = Double.NEGATIVE_INFINITY;
+                } else {
+                    ans = Double.POSITIVE_INFINITY;
+                }
+            } else {
+                ans = (deri2[0] - deri1[0])/deri1[1];
+            }
         } else {
             ans = 0;
         }
-        if (ans < 0){
-            return "-1";
-        } else if (ans == Double.NEGATIVE_INFINITY){
+        if (ans == Double.NEGATIVE_INFINITY){
             return "-Infinity";
         } else if (ans == Double.POSITIVE_INFINITY){
             return "Infinity";
+        } else if (ans < 0){
+            return "-1";
         } else {
             return Double.toString(ans);
         }
