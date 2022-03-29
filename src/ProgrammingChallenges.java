@@ -6,10 +6,7 @@
 
 import sun.security.util.ArrayUtil;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 /**
  * TODO
@@ -33,9 +30,9 @@ public class ProgrammingChallenges {
         }
         int[] evens_arr = new int[no_evens];
         int pos1 = 0;
-        for (int i = 0;i < size; i++){
-            if(arr[i] % 2 == 0) {
-                evens_arr[pos1] = arr[i];
+        for (int j : arr) {
+            if (j % 2 == 0) {
+                evens_arr[pos1] = j;
                 pos1 += 1;
             }
         }
@@ -151,8 +148,25 @@ public class ProgrammingChallenges {
     ///////// Practice 4.2 /////////
 
     public static int[][] oneHotEncode(String[] arr) {
-        /*TODO*/
-        return null;
+        /*Iterates through the arr based on the number of unique values that the arr has. Then
+        creates a new array of length of the number of unique values where each element is an
+        array of the 1s and 0s where the 1s represent the unique value.*/
+        int no_of_unique = getNumOfUniqueElements(arr);
+        String[] unique_arr = getUnique(arr);
+        int[][] final_arr = new int[no_of_unique][arr.length];
+        for (int i = 0;i<no_of_unique;i++){
+            String unique= unique_arr[i];
+            int[] temp_arr = new int[arr.length];
+            for (int j = 0;j<arr.length;j++){
+                if (Objects.equals(arr[j], unique)){
+                    temp_arr[j] = 1;
+                } else {
+                    temp_arr[j] = 0;
+                }
+            }
+            final_arr[i] = temp_arr;
+        }
+        return final_arr;
     }
 
     ///////// Practice 5.1 /////////
