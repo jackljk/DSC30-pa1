@@ -173,13 +173,30 @@ public class ProgrammingChallenges {
 
     public static int[] calculateDerivative(int[] polyArr){
         /*TODO*/
-        return null;
+        int[] temp_array = new int[polyArr.length];
+        for (int i=0;i<polyArr.length;i++){
+            temp_array[i] = polyArr[i]*i;
+        }
+        int[] final_array = new int[polyArr.length - 1];
+        if (temp_array.length == 1){
+            final_array = temp_array;
+        } else {
+            for (int i = 0; i < polyArr.length - 1; i++) {
+                final_array[i] = temp_array[i + 1];
+            }
+        }
+        return final_array;
     }
 
     ///////// Practice 5.2 /////////
 
     public static double getIntersection(int[] poly1, int[] poly2){
         /*TODO*/
+        int[] deri1 = calculateDerivative(poly1);
+        int[] deri2 = calculateDerivative(poly2);
+        int deri1_pow = deri1.length;
+        int deri2_pow = deri2.length;
+
         return 0;
     }
 
