@@ -4,8 +4,6 @@
  */
 
 
-import sun.security.util.ArrayUtil;
-
 import java.util.*;
 
 /**
@@ -190,14 +188,32 @@ public class ProgrammingChallenges {
 
     ///////// Practice 5.2 /////////
 
-    public static double getIntersection(int[] poly1, int[] poly2){
+    public static String getIntersection(int[] poly1, int[] poly2){
         /*TODO*/
+        int linear_len = 2;
         int[] deri1 = calculateDerivative(poly1);
         int[] deri2 = calculateDerivative(poly2);
         int deri1_pow = deri1.length;
         int deri2_pow = deri2.length;
-
-        return 0;
+        double ans;
+        if (deri1_pow == linear_len && deri2_pow == linear_len){
+            ans = (deri2[1] - deri1[1])/(deri1[0] - deri2[0]);
+        } else if (deri1_pow == 1 && deri2_pow == linear_len){
+            ans = (deri1[0] - deri2[0])/deri2[1];
+        } else if (deri1_pow == 2 && deri2_pow == 1){
+            ans = (deri2[0] - deri1[0])/deri1[1];
+        } else {
+            ans = 0;
+        }
+        if (ans < 0){
+            return "-1";
+        } else if (ans == Double.NEGATIVE_INFINITY){
+            return "-Infinity";
+        } else if (ans == Double.POSITIVE_INFINITY){
+            return "Infinity";
+        } else {
+            return Double.toString(ans);
+        }
     }
 
 }
