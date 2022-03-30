@@ -15,10 +15,14 @@ public class ProgrammingChallenges {
 
     ///////// Practice 1 /////////
 
+    /**
+     * Counts number of even numbers in the array. Then adds all even numbers in to a new array.
+     * Which then gets reversed and all even numbers in the main array gets replaced with it's
+     * reversed counterpart.
+     * @param arr an integer array
+     * @return arr with evens reversed
+     */
     public static int[] reverseEvenNumber(int[] arr) {
-        /*Counts number of even numbers in the array. Then adds all even numbers in to a new
-        array. Which then gets reversed and all even numbers in the main array gets replaced with
-         it's reversed counterpart.*/
         int half = 2;
         int size = arr.length;
         int no_evens = 0;
@@ -52,9 +56,14 @@ public class ProgrammingChallenges {
     }
     ///////// Practice 2 /////////
 
+    /**
+     * Loops through th string to check if the string passes the criteria required for a good
+     * password and returns how good depending on how many checks were passed
+     * @param input a string of any length which is the password to be checked
+     * @return How good the password if based of the number os checks it passed
+     */
     public static String checkPasswordStrength(String input) {
-        /*Loops through th string to check if the string passes the criteria required for a good
-         password and returns how good depending on how many checks were passed*/
+        /**/
         int checks = 0;
         int min_len = 8;
         int weak = 2;
@@ -96,10 +105,15 @@ public class ProgrammingChallenges {
 
     ///////// Practice 3 /////////
 
+    /**
+     * Iterates through each coordinates and then again while calculating the distance between
+     * the 2 points and replacing it if the next distance is shorter and returns the shortest
+     * distances.
+     * @param x double array of x-coords
+     * @param y double array of y-coords
+     * @return double array with the min distances for all points.
+     */
     public static double[] findShortestDistance(double[] x, double[] y){
-        /*Iterates through each coordinates and then again while calculating the distance between
-         the 2 points and replacing it if the next distance is shorter and returns the shortest
-         distances.*/
         int square = 2;
         double[] distances = new double[x.length];
         for (int i = 0;i<x.length;i++){
@@ -118,9 +132,14 @@ public class ProgrammingChallenges {
 
     ///////// Practice 4.1 /////////
 
+    /**
+     * Creates an array of nulls in the length of the input, then changes the values in order
+     * of each unique value encountered.
+     * @param arr array of strings
+     * @return array with the one of each unique element and nulls for each repeated one.
+     */
     public static String[] getUnique(String[] arr) {
-        /*Creates an array of nulls in the length of the input, then changes the values in order
-        of each unique value encountered.*/
+        /**/
         int arr_size = arr.length;
         int pos = 0;
         String[] final_arr = new String[arr_size];
@@ -154,10 +173,14 @@ public class ProgrammingChallenges {
 
     ///////// Practice 4.2 /////////
 
+    /**
+     * Iterates through the arr based on the number of unique values that the arr has. Then
+     * creates a new array of length of the number of unique values where each element is an
+     * array of the 1s and 0s where the 1s represent the unique value.
+     * @param arr array of strings
+     * @return array of arrays with each unique value shown as 1
+     */
     public static int[][] oneHotEncode(String[] arr) {
-        /*Iterates through the arr based on the number of unique values that the arr has. Then
-        creates a new array of length of the number of unique values where each element is an
-        array of the 1s and 0s where the 1s represent the unique value.*/
         int no_of_unique = getNumOfUniqueElements(arr);
         String[] unique_arr = getUnique(arr);
         int[][] final_arr = new int[no_of_unique][arr.length];
@@ -178,10 +201,15 @@ public class ProgrammingChallenges {
 
     ///////// Practice 5.1 /////////
 
+    /**
+     * This takes in an array and multiplies that value of the integer at each index by it's
+     * index. Then moves all items in an array one to the left and reduces the array size to
+     * correspond to the decrease in power.
+     * @param polyArr array of integer that represents a polynomial
+     * @return An array that represents the derivative of the polynomial.
+     */
     public static int[] calculateDerivative(int[] polyArr){
-        /*This takes in an array and multiplies that value of the integer at each index by it's
-        index. Then moves all items in an array one to the left and reduces the array size to
-        correspond to the decrease in power.*/
+        /**/
         int[] temp_array = new int[polyArr.length];
         for (int i=0;i<polyArr.length;i++){
             temp_array[i] = polyArr[i]*i;
@@ -197,11 +225,17 @@ public class ProgrammingChallenges {
 
     ///////// Practice 5.2 /////////
 
+    /**
+     * Calculates the value of t if the derivative of both poly1 and poly2 are quadratic as it
+     * gives a linear equation. But if there is division by 0, a positive or negative infinity
+     * is returned instead. Or if the value is invalid, eg the value is negative, a -1 is
+     * returned. Else it calculates the value of t and returns the value of it.
+     * @param poly1 Array of a polynomial
+     * @param poly2 Array of a polynomial
+     * @return The intersection point between the derivative of te 2 polynomials.
+     */
     public static Double getIntersection(int[] poly1, int[] poly2){
-        /*Calculates the value of t if the derivative of both poly1 and poly2 are quadratic as it
-         gives a linear equation. But if there is division by 0, a positive or negative infinity
-         is returned instead. Or if the value is invalid, eg the value is negative, a -1 is
-         returned. Else it calculates the value of t and returns the value of it.*/
+        /**/
         int linear_len = 2;
         int[] deri1 = calculateDerivative(poly1);
         int[] deri2 = calculateDerivative(poly2);
