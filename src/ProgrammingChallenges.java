@@ -60,9 +60,14 @@ public class ProgrammingChallenges {
         int weak = 2;
         char[] chars = input.toCharArray();
         for (int i = 0;i < input.length(); i++) {
-            if (Character.isUpperCase(input.charAt(i)) && Character.isLowerCase(input.charAt(i))) {
-                checks += 1;
-                break;
+            if (Character.isUpperCase(input.charAt(i))) {
+                for (int j = 0;j<input.length();j++){
+                    if (Character.isLowerCase(input.charAt(j))) {
+                        checks += 1;
+                        break;
+                    }
+                }
+
             }
         }
         for (int i = 0;i < input.length(); i++){
@@ -185,9 +190,7 @@ public class ProgrammingChallenges {
         if (temp_array.length == 1){
             final_array = temp_array;
         } else {
-            for (int i = 0; i < polyArr.length - 1; i++) {
-                final_array[i] = temp_array[i + 1];
-            }
+            System.arraycopy(temp_array, 1, final_array, 0, polyArr.length - 1);
         }
         return final_array;
     }
